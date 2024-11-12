@@ -25,7 +25,7 @@
 1. **Клонируйте репозиторий:**
 
    ```bash
-   git clone https://github.com/your-username/todo-app.git
+   git clone [https://github.com/your-username/todo-app.git](https://github.com/eepodoprigora/mindbox.git)
 
    ```
 
