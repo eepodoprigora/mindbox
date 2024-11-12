@@ -1,0 +1,1 @@
+{"root":["./vite.config.ts","./src/app.test.tsx","./src/app.tsx","./src/index.tsx","./src/types.ts","./src/components/bottom-button.tsx","./src/components/bottom-panel.tsx","./src/components/index.ts","./src/components/task-input.tsx","./src/components/task-item.tsx","./src/components/task-list.tsx","./src/utils/get-item-label.ts","./global.d.ts"],"version":"5.6.3"}

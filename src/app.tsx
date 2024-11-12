@@ -13,6 +13,7 @@ export const App: React.FC = () => {
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
 
   useEffect(() => {
+    console.log("Loaded tasks from localStorage:", tasks);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 

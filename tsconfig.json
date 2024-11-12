@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "CommonJS",  
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "skipLibCheck": true,
     "allowJs": true,
     "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,7 +21,8 @@
   "include": [
     "vite.config.ts",
     "src/**/*",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "global.d.ts"
   ],
   "exclude": [
     "node_modules"

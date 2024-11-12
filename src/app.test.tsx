@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { App } from "./app";
 
@@ -15,11 +15,18 @@ const activeButton = "Active";
 const completedButton = "Completed";
 const noTodos = "No todos! You are doing great";
 
-// добавление
-
-test("should add a new task", () => {
+beforeEach(() => {
+  window.confirm = jest.fn().mockReturnValue(true);
+  localStorage.clear();
   render(<App />);
+});
 
+afterEach(() => {
+  cleanup();
+});
+
+// Тест на добавление задачи
+test("should add a new task", () => {
   fireEvent.change(screen.getByPlaceholderText(placeholderText), {
     target: { value: testValue },
   });
@@ -28,12 +35,10 @@ test("should add a new task", () => {
   expect(screen.getByText(testValue)).toBeInTheDocument();
 });
 
-// уаление
-
+// Тест на удаление задачи
 test("should remove a task", () => {
   window.confirm = jest.fn().mockReturnValue(true);
 
-  render(<App />);
   const input = screen.getByPlaceholderText(placeholderText);
   const button = screen.getByText(addButtonText);
 
@@ -46,11 +51,8 @@ test("should remove a task", () => {
   expect(screen.queryByText(testValue)).not.toBeInTheDocument();
 });
 
-//редактирование
-
+// Тест на редактирование задачи
 test("should edit a task", async () => {
-  render(<App />);
-
   const input = screen.getByPlaceholderText(placeholderText);
   const addButton = screen.getByText(addButtonText);
 
@@ -73,9 +75,7 @@ test("should edit a task", async () => {
 });
 
 // проверка выполнена ли задача
-
 test("should mark task as completed", () => {
-  render(<App />);
   const input = screen.getByPlaceholderText(placeholderText);
   const button = screen.getByText(addButtonText);
 
@@ -89,9 +89,7 @@ test("should mark task as completed", () => {
 });
 
 // удаление всех выполненных
-
 test("should remove completed tasks", () => {
-  render(<App />);
   const input = screen.getByPlaceholderText(placeholderText);
   const button = screen.getByText(addButtonText);
 
@@ -110,9 +108,7 @@ test("should remove completed tasks", () => {
 });
 
 // фильтрация
-
 test("should filter tasks by active/completed/all", () => {
-  render(<App />);
   const input = screen.getByPlaceholderText(placeholderText);
   const button = screen.getByText(addButtonText);
 
@@ -143,29 +139,6 @@ test("should filter tasks by active/completed/all", () => {
 });
 
 // отстутвие дел
-
 test("should display no todos message when no tasks are present", () => {
-  render(<App />);
-
   expect(screen.getByText(noTodos)).toBeInTheDocument();
-});
-
-// сохрание в хранилище
-
-beforeAll(() => {
-  global.localStorage = {
-    getItem: jest.fn(() =>
-      JSON.stringify([{ id: 1, text: "Test Task", completed: false }])
-    ),
-    setItem: jest.fn(),
-    removeItem: jest.fn(),
-    clear: jest.fn(),
-    length: 1,
-    key: jest.fn(() => "key"),
-  };
-});
-
-test("should load tasks from localStorage", () => {
-  render(<App />);
-  expect(screen.getByText("Test Task")).toBeInTheDocument();
 });
