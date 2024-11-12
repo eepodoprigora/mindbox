@@ -1,0 +1,84 @@
+/* Стили для кастомного чекбокса */
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-checkbox+.form-check-label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+.custom-checkbox+.form-check-label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background-color: transparent;
+
+}
+
+.custom-checkbox+.form-check-label::before {
+    content: "✔";
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity .3s;
+
+}
+
+.custom-checkbox:checked+.form-check-label::before {
+    opacity: 1;
+}
+
+.error {
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    color: red;
+    font-size: 12px;
+    white-space: nowrap;
+    transform: translateY(-50%);
+}
+
+.bottom-panel {
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.btn-outline-secondary {
+    border-color: #d9b6b9;
+    color: #808080;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #d9b6b9;
+    border-color: #d9b6b9;
+}
+
+.rounded-pill {
+    padding: 3px 8px;
+    font-size: 13px;
+}
+
+.clear-filter {
+    font-size: 13px;
+    color: #6c757d;
+    border: none;
+    background-color: unset;
+}
